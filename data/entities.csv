@@ -1,0 +1,14 @@
+entity_id,sector
+bbva,banca
+santander,banca
+caixabank,banca
+sabadell,banca
+dgt,publico
+sepe,gobierno
+aeat,gobierno
+iberdrola,energetico
+gasnatural,energetico
+correos,logistica
+seur,logistica
+telefonica,telecomunicaciones
+
