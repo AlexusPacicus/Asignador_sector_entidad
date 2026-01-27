@@ -1,7 +1,15 @@
 from graph.graph import app
 
-state = {
-    "url": "http://bbva-login.com"
-}
+tests = [
+    "http://bbva-login.com",
+    "http://login-seguro.com",
+    "http://bbvaseguro.com",
+    "http://correos-aviso.com",
+    "",  # inválido
+]
 
-print(app.invoke(state))
+for url in tests:
+    print("TEST:", url)
+    state = {"url": url} if url else {}
+    print(app.invoke(state))
+    print("-" * 40)

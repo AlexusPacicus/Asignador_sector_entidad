@@ -32,7 +32,7 @@ El estado final contiene un campo `result` con la siguiente estructura:
 | `entity_name`    | `str` o `None` | Nombre legible de la entidad                     |
 | `entity_detected`| `bool`         | `True` si se detecto entidad, `False` en caso contrario |
 
-## Como funciona (alto nivel)
+## Como funciona 
 
 El grafo ejecuta los siguientes nodos en orden:
 

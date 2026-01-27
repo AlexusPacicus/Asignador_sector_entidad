@@ -20,9 +20,13 @@ graph.add_edge("ingest", "validate")
 # gate duro: si hay errores → END
 graph.add_conditional_edges(
     "validate",
-    lambda s: "route" if not s["errors"] else END,
-    {"route": "route"}
+    lambda s: "route" if not s["errors"] else "__end__",
+    {
+        "route": "route",
+        "__end__": END
+    }
 )
+
 
 # routing
 graph.add_conditional_edges(
