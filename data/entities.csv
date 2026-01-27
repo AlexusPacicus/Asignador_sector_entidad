@@ -1,14 +1,13 @@
-entity_id,sector
-bbva,banca
-santander,banca
-caixabank,banca
-sabadell,banca
-dgt,publico
-sepe,gobierno
-aeat,gobierno
-iberdrola,energetico
-gasnatural,energetico
-correos,logistica
-seur,logistica
-telefonica,telecomunicaciones
-
+entity_id,entity_name,token
+bbva,BBVA,bbva
+santander,Santander,santander
+caixabank,CaixaBank,caixa
+sabadell,Sabadell,sabadell
+dgt,DGT,dgt
+sepe,SEPE,sepe
+aeat,AEAT,aeat
+iberdrola,Iberdrola,iberdrola
+gasnatural,Gas Natural,gasnatural
+correos,Correos,correos
+seur,SEUR,seur
+telefonica,Telefónica,telefonica
