@@ -1,0 +1,6 @@
+url,detected_entity,expected_entity,notes
+url,,expected_entity,notes
+http://particulares-bancosantander-es.tempurl.host/es/grupo/home/codigo_incorrecta.php,santander,santander,priorizada por scoring; ambigüedad esperable
+http://loc52.caixabank.es.lacaixa.actualizar.information.ay-min.az/soporte-directonow/home/Espera.html,caixabank,caixabank,brand en subdominio; colisiones posibles
+http://oficinacorreos.page.link/es,correos,correos,shortener; hosting externo
+https://bbva.es.suspension-tarjeta.com,bbva,bbva,brand en dominio; patrón común
