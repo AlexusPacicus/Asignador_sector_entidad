@@ -1,24 +1,19 @@
 # sector_entidad_lang
 
-## Que es este proyecto
+Este proyecto implementa un flujo determinista basado en **LangGraph** para identificar entidades a través de sus URLs. El sistema analiza una dirección web, localiza tokens predefinidos en ella y devuelve la entidad asociada de forma estructurada y predecible.
 
-Flujo LangGraph determinista para deteccion de entidades a partir de URLs.
-Recibe una URL, busca tokens conocidos en ella y devuelve la entidad asociada si existe coincidencia.
+## Propósito y Alcance
 
-## Que NO es
+Para garantizar la precisión técnica, es fundamental definir los límites del sistema:
 
-- No es un detector de phishing.
-- No es un priorizador de alertas.
-- No utiliza Machine Learning ni LLMs.
-- No hace scoring ni clasificacion.
+### Qué NO hace el sistema
+*   **No es un detector de phishing:** No evalúa la seguridad de la URL.
+*   **No prioriza alertas:** No gestiona la criticidad de los eventos.
+*   **No usa IA:** No utiliza Machine Learning ni Modelos de Lenguaje (LLMs).
+*   **No clasifica:** No realiza scoring ni categorización de datos.
 
-## Que NO entra en v3
-
-- sector
-- scoring
-- LLM
-- abstracciones extra
-- logica nueva
+### Exclusiones específicas de la v3
+En esta versión no se incluye lógica de sectores, sistemas de puntuación, integraciones con LLMs ni abstracciones adicionales que no formen parte de la detección mecánica principal.
 
 ## Input
 
@@ -75,20 +70,24 @@ El grafo ejecuta los siguientes nodos:
 - **Determinismo**: mismo input → mismo output (sin timestamps/UUIDs en contrato).
 - **Defensividad**: accesos con `.get()`, cero excepciones por datos.
 
-## Como ejecutar
+## Guía de Inicio Rápido
+
+### Instalación y Ejecución
+Para configurar el entorno y ejecutar el flujo principal:
 
 ```bash
 pip install -r requirements.txt
 python main.py
 ```
 
-## Como testear
+### Verificación del Contrato
+Para asegurar que el sistema respeta los invariantes y el esquema de salida definido:
 
 ```bash
 pytest test_contract.py -v
 ```
 
-## Estado del proyecto
+## Estado del Proyecto
 
-- Version actual: v3
-- Version congelada: v2 (tag v2.0)
+*   **Versión actual:** v3 (desarrollo activo).
+*   **Versión estable:** v2 (congelada bajo el tag `v2.0`).
