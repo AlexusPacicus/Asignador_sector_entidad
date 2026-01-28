@@ -4,7 +4,7 @@ from pathlib import Path
 
 from graph.graph import app
 
-CSV_PATH = Path(__file__).parent / "rem" / "cases.csv"
+CSV_PATH = Path(__file__).parent.parent / "cases.csv"
 
 
 def main():
