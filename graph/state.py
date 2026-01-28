@@ -18,7 +18,8 @@ from typing import TypedDict, Optional
 
 # total=False: campos opcionales durante el grafo; el contrato aplica al estado final.
 class State(TypedDict, total=False):
-    input: Optional[dict]         # Entrada original (ej: {"url": "..."})
+    url: Optional[str]            # Entrada raw (entrypoint)
+    input: Optional[dict]         # Entrada validada (ej: {"url": "..."})
     entity: Optional[dict]        # Resultado de detección (entity_detected, entity_id, entity_name)
     violations: list              # Violaciones de invariantes (irrecuperables)
     abort_reason: Optional[str]   # Razón de abort si aplica

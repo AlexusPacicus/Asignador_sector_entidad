@@ -1,54 +1,77 @@
-import uuid
-from datetime import datetime
 from .entities import ENTITY_LOOKUP, ENTITY_NAMES
 
 
-def ingest(state):
-    state["errors"] = []
-    state["meta"] = {
-        "run_id": str(uuid.uuid4()),
-        "ts_start": datetime.utcnow().isoformat()
-    }
-    state["entity_id"] = None
-    state["result"] = None
-    return state
+def validate_input(state):
+    """Valida input. Retorna input y/o abort_reason."""
+    url = state.get("url")
+    
+    if not isinstance(url, str) or not url.strip():
+        return {
+            "input": None,
+            "abort_reason": "url missing or invalid"
+        }
+    
+    return {"input": {"url": url}}
 
-def validate(state):
-    if not isinstance(state.get("url"), str) or not state["url"].strip():
-        state["errors"].append({
-            "type": "INVALID_INPUT",
-            "reason": "url missing or invalid"
-        })
-    return state
 
-def route(state):
-    return state
-
-def enrich(state):
-    url = state["url"].lower()
+def detector_mecanico(state):
+    """Detecta entidad. Retorna solo entity."""
+    input_data = state.get("input")
+    if input_data is None:
+        return {}
+    
+    url = input_data.get("url", "")
+    url_lower = url.lower()
+    
     for token, entity_id in ENTITY_LOOKUP.items():
-        if token in url:
-            state["entity_id"] = entity_id
-            break
-    return state
+        if token in url_lower:
+            return {
+                "entity": {
+                    "entity_detected": True,
+                    "entity_id": entity_id,
+                    "entity_name": ENTITY_NAMES.get(entity_id)
+                }
+            }
+    
+    return {
+        "entity": {
+            "entity_detected": False,
+            "entity_id": None,
+            "entity_name": None
+        }
+    }
 
 
 def finalize(state):
-    if state["errors"]:
-        return state
-
-    if state["entity_id"]:
-        state["result"] = {
-            "entity_id": state["entity_id"],
-            "entity_name": ENTITY_NAMES[state["entity_id"]],
-            "entity_detected": True
-        }
+    """Valida contrato. Retorna violations si falla."""
+    if state.get("abort_reason") or state.get("violations"):
+        return {}
+    
+    entity = state.get("entity")
+    if entity is None:
+        return {}
+    
+    violations = []
+    
+    if "entity_detected" not in entity:
+        violations.append("entity_detected ausente")
     else:
-        state["result"] = {
-            "entity_id": None,
-            "entity_name": None,
-            "entity_detected": False
-        }
-
-    state["meta"]["ts_end"] = datetime.utcnow().isoformat()
-    return state
+        detected = entity.get("entity_detected")
+        eid = entity.get("entity_id")
+        ename = entity.get("entity_name")
+        
+        if detected:
+            if eid is None:
+                violations.append("entity_id es None con detected=True")
+            if ename is None:
+                violations.append("entity_name es None con detected=True")
+        else:
+            if eid is not None:
+                violations.append("entity_id no es None con detected=False")
+            if ename is not None:
+                violations.append("entity_name no es None con detected=False")
+    
+    if violations:
+        return {"violations": violations}
+    
+    return {}
