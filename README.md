@@ -2,45 +2,78 @@
 
 ## Que es este proyecto
 
-Flujo LangGraph determinista para enriquecimiento de entidades a partir de URLs.
+Flujo LangGraph determinista para deteccion de entidades a partir de URLs.
 Recibe una URL, busca tokens conocidos en ella y devuelve la entidad asociada si existe coincidencia.
-El sistema asume URLs espanolas como precondicicon (tokens de bancos, organismos publicos y empresas espanolas).
 
 ## Que NO es
 
 - No es un detector de phishing.
 - No es un priorizador de alertas.
 - No utiliza Machine Learning ni LLMs.
+- No hace scoring ni clasificacion.
+
+## Que NO entra en v3
+
+- sector
+- scoring
+- LLM
+- abstracciones extra
+- logica nueva
 
 ## Input
 
 Diccionario con una clave `url` de tipo string.
 
 ```python
+{"url": "http://ejemplo.com"}
+```
+
+## Output (Contrato v3)
+
+### Caso exito (sin abort)
+
+```python
 {
-    "url": "http://ejemplo.com"
+    "entity": {
+        "entity_detected": True,   # o False
+        "entity_id": "bbva",       # o None si detected=False
+        "entity_name": "BBVA"      # o None si detected=False
+    },
+    "abort_reason": None,
+    "violations": []
 }
 ```
 
-## Output
+**Invariantes:**
+- `entity.entity_detected` siempre presente (bool)
+- Si `True` → `entity_id` y `entity_name` no-None
+- Si `False` → `entity_id` y `entity_name` None
 
-El estado final contiene un campo `result` con la siguiente estructura:
+### Caso abort
 
-| Campo            | Tipo           | Descripcion                                      |
-|------------------|----------------|--------------------------------------------------|
-| `entity_id`      | `str` o `None` | Identificador de la entidad detectada            |
-| `entity_name`    | `str` o `None` | Nombre legible de la entidad                     |
-| `entity_detected`| `bool`         | `True` si se detecto entidad, `False` en caso contrario |
+```python
+{
+    "entity": None,
+    "abort_reason": "url missing or invalid",  # o violations != []
+    "violations": []
+}
+```
 
-## Como funciona 
+## Como funciona (v3)
 
-El grafo ejecuta los siguientes nodos en orden:
+El grafo ejecuta los siguientes nodos:
 
-1. **ingest** - Inicializa el estado con metadatos y estructuras vacias.
-2. **validate** - Verifica que el campo `url` sea un string valido.
-3. **route** - Punto de decision: si ya existe `entity_id`, salta a finalize.
-4. **enrich** - Busca tokens conocidos en la URL y asigna `entity_id` si hay coincidencia.
-5. **finalize** - Construye el objeto `result` con los datos de la entidad.
+1. **validate_input** - Valida que `url` sea string valido. Retorna `input` o `abort_reason`.
+2. **[gate]** - Si `abort_reason` o `violations` → END.
+3. **detector_mecanico** - Busca tokens en la URL. Retorna `entity`.
+4. **finalize** - Valida invariantes del contrato. Retorna `violations` si falla.
+
+## Invariantes del sistema
+
+- **Nodos puros**: no mutan estado, retornan deltas.
+- **Gates**: solo leen flags, no computan.
+- **Determinismo**: mismo input → mismo output (sin timestamps/UUIDs en contrato).
+- **Defensividad**: accesos con `.get()`, cero excepciones por datos.
 
 ## Como ejecutar
 
@@ -49,38 +82,13 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## Ejemplo de ejecucion
+## Como testear
 
-### Input
-
-```python
-{
-    "url": "http://bbva-login.com"
-}
-```
-
-### Output
-
-```python
-{
-    'url': 'http://bbva-login.com',
-    'entity_id': 'bbva',
-    'errors': [],
-    'meta': {
-        'run_id': '34aaaa61-081c-45de-b3ef-9c6457580012',
-        'ts_start': '2026-01-27T17:34:24.941579',
-        'ts_end': '2026-01-27T17:34:24.942873'
-    },
-    'result': {
-        'entity_id': 'bbva',
-        'entity_name': 'BBVA',
-        'entity_detected': True
-    }
-}
+```bash
+pytest test_contract.py -v
 ```
 
 ## Estado del proyecto
 
-- Version congelada: v2
-- Auditada
-- Lista para integracion aguas abajo
+- Version actual: v3
+- Version congelada: v2 (tag v2.0)
