@@ -87,7 +87,3 @@ Para asegurar que el sistema respeta los invariantes y el esquema de salida defi
 pytest test_contract.py -v
 ```
 
-## Estado del Proyecto
-
-*   **Versión actual:** v3 (desarrollo activo).
-*   **Versión estable:** v2 (congelada bajo el tag `v2.0`).
