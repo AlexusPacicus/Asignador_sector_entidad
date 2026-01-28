@@ -1,34 +1,24 @@
-from typing import TypedDict, Optional, List
-from typing_extensions import NotRequired
+"""
+CONTRATO DE SALIDA v3
+
+CASO ÉXITO (sin abort):
+- abort_reason is None
+- violations == []
+- entity presente y cumple invariantes:
+  - entity_detected siempre presente (bool)
+  - si True  -> entity_id y entity_name no-None
+  - si False -> entity_id y entity_name None
+
+CASO ABORT:
+- abort_reason poblado o violations != []
+- entity == None
+"""
+from typing import TypedDict, Optional
 
 
-class ErrorDetail(TypedDict):
-    type: str
-    reason: str
-
-
-class MetaInfo(TypedDict, total=False):
-    run_id: str
-    ts_start: str
-    ts_end: str
-
-
-class ResultInfo(TypedDict):
-    entity_id: Optional[str]
-    entity_name: Optional[str]
-    entity_detected: bool
-
-
+# total=False: campos opcionales durante el grafo; el contrato aplica al estado final.
 class State(TypedDict, total=False):
-    # input
-    url: str
-
-    # work
-    entity_id: Optional[str]
-
-    # control
-    errors: List[ErrorDetail]
-    meta: MetaInfo
-
-    # output
-    result: ResultInfo
+    input: Optional[dict]         # Entrada original (ej: {"url": "..."})
+    entity: Optional[dict]        # Resultado de detección (entity_detected, entity_id, entity_name)
+    violations: list              # Violaciones de invariantes (irrecuperables)
+    abort_reason: Optional[str]   # Razón de abort si aplica
