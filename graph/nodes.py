@@ -1,3 +1,4 @@
+from urllib.parse import urlparse
 from .entities import ENTITY_LOOKUP, ENTITY_NAMES
 
 
@@ -21,10 +22,35 @@ def detector_mecanico(state):
         return {}
     
     url = input_data.get("url", "")
-    url_lower = url.lower()
+    parsed = urlparse(url.lower())
+    netloc = parsed.netloc
+    path = parsed.path
     
+    # Capa 1: Dominio exacto - netloc termina en {token}.es o {token}.com
     for token, entity_id in ENTITY_LOOKUP.items():
-        if token in url_lower:
+        if netloc.endswith(f"{token}.es") or netloc.endswith(f"{token}.com"):
+            return {
+                "entity": {
+                    "entity_detected": True,
+                    "entity_id": entity_id,
+                    "entity_name": ENTITY_NAMES.get(entity_id)
+                }
+            }
+    
+    # Capa 2: Subdominio - netloc empieza por {token}.
+    for token, entity_id in ENTITY_LOOKUP.items():
+        if netloc.startswith(f"{token}."):
+            return {
+                "entity": {
+                    "entity_detected": True,
+                    "entity_id": entity_id,
+                    "entity_name": ENTITY_NAMES.get(entity_id)
+                }
+            }
+    
+    # Capa 3: Path - path contiene /{token}/
+    for token, entity_id in ENTITY_LOOKUP.items():
+        if f"/{token}/" in path:
             return {
                 "entity": {
                     "entity_detected": True,
@@ -42,36 +68,3 @@ def detector_mecanico(state):
     }
 
 
-def finalize(state):
-    """Valida contrato. Retorna violations si falla."""
-    if state.get("abort_reason") or state.get("violations"):
-        return {}
-    
-    entity = state.get("entity")
-    if entity is None:
-        return {}
-    
-    violations = []
-    
-    if "entity_detected" not in entity:
-        violations.append("entity_detected ausente")
-    else:
-        detected = entity.get("entity_detected")
-        eid = entity.get("entity_id")
-        ename = entity.get("entity_name")
-        
-        if detected:
-            if eid is None:
-                violations.append("entity_id es None con detected=True")
-            if ename is None:
-                violations.append("entity_name es None con detected=True")
-        else:
-            if eid is not None:
-                violations.append("entity_id no es None con detected=False")
-            if ename is not None:
-                violations.append("entity_name no es None con detected=False")
-    
-    if violations:
-        return {"violations": violations}
-    
-    return {}

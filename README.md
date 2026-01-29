@@ -34,8 +34,7 @@ Diccionario con una clave `url` de tipo string.
         "entity_id": "bbva",       # o None si detected=False
         "entity_name": "BBVA"      # o None si detected=False
     },
-    "abort_reason": None,
-    "violations": []
+    "abort_reason": None
 }
 ```
 
@@ -49,8 +48,7 @@ Diccionario con una clave `url` de tipo string.
 ```python
 {
     "entity": None,
-    "abort_reason": "url missing or invalid",  # o violations != []
-    "violations": []
+    "abort_reason": "url missing or invalid"
 }
 ```
 
@@ -59,9 +57,8 @@ Diccionario con una clave `url` de tipo string.
 El grafo ejecuta los siguientes nodos:
 
 1. **validate_input** - Valida que `url` sea string valido. Retorna `input` o `abort_reason`.
-2. **[gate]** - Si `abort_reason` o `violations` → END.
+2. **[gate]** - Si `abort_reason` → END.
 3. **detector_mecanico** - Busca tokens en la URL. Retorna `entity`.
-4. **finalize** - Valida invariantes del contrato. Retorna `violations` si falla.
 
 ## Invariantes del sistema
 
