@@ -10,18 +10,19 @@
 
 Señales observables:
 
-* particulers-bancosantander-es (subdominio)
-* es (lenguaje o región)
-* grupo (ruta específica)
-* home (ruta específica)
+* particulers-bancosantander-es (dominio)
+* es (subdominio)
+* grupo (ruta)
+* home (ruta)
+* codigo_incorrecta (ruta)
 
 Patrón potencial:
-El patrón potencial aquí sugiere la posible detección de una entidad relacionada con el sector bancario y, más específicamente, con Santander.
+El patrón observable en esta URL es la presencia de un dominio y subdominios que pueden ser indicadores de una entidad financiera, como un banco. La ruta "/grupo/home" sugiere una estructura organizativa dentro de esa entidad.
 
 Ambigüedades:
 
-• La presencia del término "tempurl.host" puede generar confusión al considerarse un dominio temporal o un servicio de hosting.
-• La ruta "/codigo_incorrecta.php" puede ser irrelevante para la detección de la entidad en cuestión.
+* La palabra "codigo_incorrecta" en la ruta puede ser confusa si no se tiene información adicional sobre el contexto.
+* La presencia de "tempurl.host" en el dominio puede ser un indicador temporal o provisional que no aporta claridad sobre la entidad.
 
 ---
 
@@ -33,23 +34,21 @@ Ambigüedades:
 
 Señales observables:
 
-* caixabank (dominio)
-* lacaixa (subdominio del dominio)
+* loc52.caixabank (dominio)
+* caixa (subdominio)
 * actualizar (ruta)
 * information (ruta)
 * ay-min (ruta)
 * az (ruta)
 * soporte-directonow (ruta)
-* home (ruta)
-* Espera (ruta)
 
 Patrón potencial:
-La presencia de "caixabank" y "lacaixa" en el dominio sugiere una posible relación con la entidad CaixaBank, mientras que la ruta contiene varios tokens relevantes asociados a entidades financieras o tecnológicas.
+La presencia de "caixa" y "ay-min" sugiere una posible conexión con la entidad Caixabank, ya que estos tokens se encuentran en el dominio y subdominio respectivamente.
 
 Ambigüedades:
 
-• La ruta puede contener tokens irrelevantes que no estén relacionados con la entidad.
-• La presencia de subdominios pueden ser confusos, ya que pueden pertenecer a diferentes entidades.
+• La ruta puede contener tokens irrelevantes para la detección, lo que podría llevar a false positives o negatives.
+• La presencia de tokens como "actualizar" y "information" puede ser común en URLS de múltiples entidades, lo que limita la confiabilidad del patrón.
 
 ---
 
@@ -61,16 +60,18 @@ Ambigüedades:
 
 Señales observables:
 
-* oficinacorreos (dominio)
-* page (ruta)
-* link (ruta)
+* oficinacorreos
+* page.link
+* es (subdominio)
 
-Patrón potencial: El patrón observable es la presencia de un dominio específico, seguido por una ruta que contiene el término "link", lo que puede indicar la detección de una entidad relacionada con enlaces o comunicación.
+Patrón potencial:
+El patrón general que se puede identificar en esta URL es la estructura de dominio y ruta, donde el dominio se divide en subdominios y la ruta contiene tokens relevantes asociados a una entidad.
 
 Ambigüedades:
 
-• La presencia del término "page" en la ruta podría confundir la detección si no se considera como parte del dominio.
-• La extensión ".link" puede generar ambigüedad si no se distingue entre esta extensión y otras similares.
+• La presencia de "page.link" puede sugerir que se está tratando de un enlace o una redirección, lo que puede afectar la detección de la entidad.
+• La existencia de subdominios como "es" puede dificultar la identificación del dominio principal y, por lo tanto, la detección de la entidad.
+• La ruta puede contener tokens irrelevantes o triviales que no contribuyen significativamente a la detección de la entidad.
 
 ---
 
@@ -82,18 +83,15 @@ Ambigüedades:
 
 Señales observables:
 
-* La presencia del dominio "bbva" que coincide con la entidad detectada.
-* El uso de subdominio ".es" que puede indicar una conexión con España, país de origen de la entidad.
-* La ruta "/suspension-tarjeta.com" que puede contener tokens relevantes asociados a una entidad financiera.
+* bbva (dominio)
+* suspension-tarjeta (ruta)
 
 Patrón potencial:
-
-El patrón general que se repite es el uso del dominio "bbva" como indicador principal de la entidad, con posibles señales adicionales en el subdominio y ruta que lo apoyan. La coincidencia entre el dominio y la entidad detectada sugiere una conexión fuerte.
+El patrón que se repite es la presencia de un dominio específico en combinación con una ruta relacionada con una entidad financiera. La ruta contiene tokens relevantes para una entidad bancaria, lo que sugiere la detección de una institución financiera.
 
 Ambigüedades:
-
-* La presencia de otros dominios ".es" que pueden pertenecer a otras entidades, lo que podría generar confusiones.
-* El uso de rutas similares en URLs de otras entidades financieras, lo que podría hacer difícil la detección definitiva.
+• El uso de "tarjeta" en la ruta puede referirse a diferentes tipos de tarjetas (de crédito, débito, etc.), lo que puede requerir una mayor precisión en la detección.
+• La presencia de ".es" en el dominio indica que se trata de un dominio geográficamente específico, lo que puede limitar la generalidad del patrón.
 
 ---
 
@@ -107,16 +105,16 @@ Señales observables:
 
 * wcomhost.com (subdominio)
 * santanderbanco.es (dominio)
-* bancosantander/es (ruta)
-* sms_codigo.php (ruta)
+* bancosantander (ruta)
+* santander (ruta)
 
 Patrón potencial:
-La presencia de "santander" en el dominio y la ruta sugiere un patrón de entidad recurrente, relacionado con una institución financiera o empresa.
+El patrón que se repite es la presencia de "santander" en diferentes partes de la URL, lo que sugiere una entidad relacionada con el banco Santander.
 
 Ambigüedades:
 
-• La ruta puede contener otros tokens relevantes asociados a diferentes entidades.
-• La detección podría verse afectada por la presencia de otros dominios o subdominios en el mismo nivel jerárquico.
+• La ruta puede contener tokens irrelevantes que no están asociados a la entidad.
+• La detección se basa solo en señales explícitas presentes en la URL, lo que puede limitar la precisión en casos de patrones más sutiles.
 
 ---
 
@@ -134,12 +132,13 @@ Señales observables:
 * Santander
 
 Patrón potencial:
-El patrón que se repite en esta URL es la presencia de la entidad "Santander" en el dominio y ruta, lo que sugiere una posible relación entre la URL y dicha entidad.
+El patrón que se repite es la presencia de "Santander" en diferentes niveles de la URL, lo que sugiere una fuerte asociación con esta entidad.
 
 Ambigüedades:
 
-• La subdominación (santanderbanco.es) puede ser confusa si no se considera el contexto del dominio principal (wcomhost.com).
-• La ruta (/bancosantander/es/particulares/Santander/fc1d08f1e92f5327005249a01496da74/sms_codigo.php) puede contener tokens relevantes asociados a la entidad, pero también puede ser una ruta interna o específica de un sistema.
+• La posible confusión entre el subdominio "santanderbanco.es" y el dominio principal "wcomhost.com".
+• La presencia del nombre de la entidad ("Santander") en diferentes niveles, lo que podría generar dudas sobre qué nivel es más relevante.
+• La posibilidad de que otros sitios web también contengan menciones a "Santander", lo que podría afectar la confiabilidad de la detección.
 
 ---
 
@@ -151,20 +150,19 @@ Ambigüedades:
 
 Señales observables:
 
-* https:// (indicador de protocolo)
-* 2022-bdaef4.ingress-earth.ewp.live (dominio con subdominios)
-* /correos/ (ruta con tokens relevantes)
-* /Recibir_paquete.php (ruta con archivo o recurso específico)
+* dominio ewp.live
+* ruta /correos/
+* token "Recibir_paquete" en la ruta
+* subdominio 2022-bdaef4.ingress-earth en el dominio
 
 Patrón potencial:
-
-El patrón observable en esta URL es el uso de un dominio que combina letras y números, seguido de una ruta que contiene tokens relacionados con correos y una ruta final que indica la recepción de paquetes.
+La detección de "correos" puede estar relacionada con un patrón de URLs que contienen subdominios y rutas que refieren a servicios de correos electrónicos o comunicación.
 
 Ambigüedades:
 
-• La presencia de subdominios puede hacer que sea difícil determinar si "correos" se refiere al dominio o a un recurso específico.
-• La ruta "/Recibir_paquete.php" puede ser confundida con otras rutas que contienen palabras clave similares, lo que podría llevar a la detección de entidades incorrectas.
-• La estructura de la URL es similar a otras URLs que no se refieren a "correos", lo que puede requerir una mayor precisión en la detección.
+• La palabra clave "Recibir_paquete" puede ser confusa debido a la ambigüedad del término "paquete", que podría referirse a diferentes tipos de datos.
+• El subdominio 2022-bdaef4.ingress-earth puede no tener relevancia directa con la entidad detectada, lo que puede crear una fuente de distracción.
+• La ruta /correos/ puede contener otras palabras clave relevantes que no se han considerado explícitamente en la detección.
 
 ---
 
@@ -176,19 +174,18 @@ Ambigüedades:
 
 Señales observables:
 
-* wcomhost.com (subdominio)
-* santanderbanco.es (dominio)
-* bancosantander (ruta)
-* particulares (ruta)
-* Santander (ruta)
+* wcomhost.com
+* santanderbanco.es
+* bancosantander/es
+* Santander
 
 Patrón potencial:
-La presencia de "Santander" en la ruta puede indicar una entidad relacionada con el Banco Santander.
+La presencia de "santander" en diferentes partes de la URL, como dominio y ruta, sugiere que puede ser un patrón de entidad repetido.
 
 Ambigüedades:
 
-• La presencia de subdominios no es necesariamente exclusiva para una entidad, ya que pueden ser utilizados por varias empresas o organizaciones.
-• La ruta "bancosantander" puede referirse a una división o sección dentro del Banco Santander, lo que no es automáticamente equivalente a la entidad en sí.
+• El uso de subdominios y variaciones en la forma de escritura del nombre de la entidad (por ejemplo, "Santander" con mayúscula o minúsculas) pueden llevar a confusiones.
+• La presencia de palabras clave relevantes ("particulares", "codigo_incorrecta.php") puede distraer la atención de la búsqueda de patrones de entidad.
 
 ---
 
@@ -200,18 +197,19 @@ Ambigüedades:
 
 Señales observables:
 
-* wcomhost.com (dominio)
-* santanderbanco.es (subdominio)
-* bancosantander (ruta)
-* Santander (ruta)
+* wcomhost.com
+* santanderbanco.es
+* bancosantander
+* Santander
 
 Patrón potencial:
-La presencia de "Santander" en la ruta y el subdominio puede indicar un patrón de entidad que se repite, relacionado con la banca o servicios financieros.
+El patrón que se repite es la presencia de palabras clave relacionadas con la entidad "Santander" en diferentes niveles de la URL, incluyendo el dominio y la ruta.
 
 Ambigüedades:
 
-• El uso de dominios de terceros (como wcomhost.com) puede generar confusión al analizar la señalización.
-• La presencia de palabras clave como "banco" y "financiera" en la ruta puede influir en la detección, pero no es un indicador directo.
+• La presencia de palabras comunes como "bancos" o "banco" no necesariamente indica la detección de la entidad.
+• La posible ambigüedad entre "Santander" como una parte del dominio o como un componente de la ruta.
+• La ausencia de señales más específicas o únicas que asocien directamente a la entidad.
 
 ---
 
@@ -223,19 +221,19 @@ Ambigüedades:
 
 Señales observables:
 
-* 21321-bbf062 (subdominio)
-* ingress-earth.ewp.live (dominio)
+* ewp.live (subdominio)
+* 21321-bbf062 (parte del dominio)
 * pagomente (ruta)
 * Recibir_paquete (ruta)
 * php (extensión de archivo)
 
 Patrón potencial:
-La presencia del subdominio "21321-bbf062" y el dominio "ingress-earth.ewp.live" sugiere una posible relación con una plataforma o sistema específico. La ruta "/pagomente/Recibir_paquete.php" puede indicar que se trata de una aplicación o servicio relacionado con la recepción y procesamiento de paquetes.
+La presencia de un subdominio y una ruta relacionada con el procesamiento de paquetes pueden indicar un patrón relacionado con la gestión de envíos o recepciones.
 
 Ambigüedades:
 
-• El uso común del sufijo ".php" para archivos web podría llevar a inferir que se trata de un sitio web, pero no hay información clara sobre la naturaleza del contenido.
-• La ruta "/pagomente/Recibir_paquete.php" puede ser parte de una aplicación o servicio específico, lo que podría requerir más contexto o información adicional para determinar la entidad detectada.
+• La ruta puede contener otros tokens relevantes asociados a diferentes entidades.
+• La extensión de archivo "php" no es necesariamente una señal definitiva, ya que puede corresponder a un lenguaje de programación generalizado.
 
 ---
 
@@ -247,21 +245,18 @@ Ambigüedades:
 
 Señales observables:
 
-* particulers-santanderes (dominio)
-* 10web (subdominio del dominio)
+* particulares-santanderes (subdominio)
 * wp-includes (ruta)
-* XZlL3dlYi93cC1sa (ruta)
-* orange (ruta)
-* customer_center (ruta)
-* customer-IDPP00C168 (ruta)
-* login.php (ruta)
+* XZlL3dlYi93cC1sa (token en la ruta)
+* orange (token en la ruta)
 
 Patrón potencial:
-El patrón que se repite en esta URL es la presencia de subdominios y rutas específicas que pueden estar relacionadas con una entidad bancaria, como "santanderes" o "orange", lo que podría indicar una conexión con un banco o servicio financiero.
+El patrón que se repite aquí es la presencia de subdominios y tokens relevantes en la ruta. El subdominio "particulares-santanderes" puede indicar una conexión con una entidad financiera, mientras que los tokens "wp-includes", "orange" y "customer_center" sugieren una relación con una plataforma web o un sistema de gestión.
 
 Ambigüedades:
-• La presencia de palabras clave comunes en la ruta (como "customer_center" y "login.php") puede hacer difícil discernir si se trata de una entidad bancaria o no.
-• El uso de caracteres especiales en la ruta (como "-" y "_") puede ser confundido con otros patrones de entidad.
+• La ruta "wp-includes" puede ser confundida con una ruta específica para WordPress, lo que podría limitar la detección.
+• El token "XZlL3dlYi93cC1sa" es difícil de interpretar y puede ser un elemento de seguridad o un fragmento de código.
+• La presencia de "customer_center" y "customer-IDPP00C168" en la ruta puede sugerir una relación con un sistema de gestión de clientes, pero no está claro si se trata de una entidad específica.
 
 ---
 
@@ -273,20 +268,19 @@ Ambigüedades:
 
 Señales observables:
 
-* 3476-1-bce161 (subdominio)
-* ingress-baronn (subdominio)
-* ewp (subdominio)
-* pagomente (ruta)
-* Recibir_paquete.php (ruta)
+* ingress-baronn
+* ewp
+* Recibir_paquete
+* pagomente
 
 Patrón potencial:
-El patrón que se repite es la presencia de subdominios y rutas que contienen tokens relevantes asociados a una entidad, lo que sugiere la detección de una aplicación web o un servicio específico.
+El patrón que se repite es la presencia de un subdominio (ingress-baronn) seguido por una ruta que contiene palabras clave relevantes para la entidad (Recibir_paquete y pagomente).
 
 Ambigüedades:
 
-• La ruta "Recibir_paquete.php" puede ser confundida con una acción o un método, lo que podría afectar la detección.
-• La presencia de subdominios y rutas diferentes puede limitar la capacidad para detectar patrones más generales.
-• La longitud variable de los subdominios puede hacer que sean difíciles de interpretar.
+• La ruta puede contener tokens irrelevantes que no estén relacionados con la entidad.
+• El dominio puede variar, lo que puede afectar la detección de la entidad.
+• La presencia de palabras clave en la ruta no garantiza la detección de la entidad.
 
 ---
 
@@ -298,20 +292,18 @@ Ambigüedades:
 
 Señales observables:
 
-* particiales-bancosantander-es (dominio)
-* es (subdominio)
+* particulares-bancosantander-es (dominio)
 * grupo
-* home
-* codigo_incorrecta
+* codigo_incorrecta (ruta)
 
 Patrón potencial:
-La presencia de "bancosantander" en el dominio y "es" como subdominio puede indicar la posible entidad de un banco o institución financiera.
+El patrón observable en esta URL puede ser el de una entidad financiera, específicamente un banco, ya que el dominio contiene el nombre del banco y la ruta menciona código incorrecto, lo que sugiere algún tipo de error o problema técnico relacionado con la banca.
 
 Ambigüedades:
 
-• La ruta "/grupo/home" podría pertenecer a cualquier grupo o sección dentro de una organización.
-• El término "codigo_incorrecta" en la ruta puede ser un error o un intento de acceso no autorizado.
-• La presencia de ".php" en el final del URL puede indicar que se trata de un archivo web con contenido dinámico.
+* La presencia de "tempurl" en el dominio puede ser una indicación de un servicio temporal o pruebas, lo que podría influir en la confiabilidad del patrón.
+* La ruta /codigo_incorrecta.php puede estar relacionada con algún problema técnico o error, pero no proporciona información específica sobre la entidad financiera.
+* La ausencia de otros tokens relevantes en la ruta puede limitar la precisión del patrón.
 
 ---
 
@@ -323,19 +315,19 @@ Ambigüedades:
 
 Señales observables:
 
-* particulares-santanderes
-* wp-includes
-* orange
-* customer_center
-* customer-IDPP00C638
+* particulares-santanderes (subdominio)
+* orange (token relevante en la ruta)
+* customer_center (token relevante en la ruta)
+* IDPP00C638 (token relevante en la ruta)
 
 Patrón potencial:
-El patrón que se repite en esta URL es el uso de palabras clave que pueden estar relacionadas con una entidad financiera o bancaria, como "santander" y "orange", lo que sugiere la posibilidad de que la entidad detectada esté relacionada con este sector.
+El patrón que se repite es el uso de tokens relevantes en la ruta para indicar una entidad relacionada con servicios financieros o comerciales, posiblemente vinculados a una marca específica.
 
 Ambigüedades:
-• La palabra "customer" puede referirse a diferentes entidades, no solo financieras.
-• La presencia de "wp-includes" podría hacer pensar en un contexto web o WordPress, lo que puede desviar la atención de la entidad real.
-• El uso de números y caracteres especiales ("IDPP00C638") puede ser difícil de interpretar sin contexto adicional.
+
+• La presencia de subdominios puede generar ambigüedad si no se tienen en cuenta señales adicionales.
+• La ruta puede contener tokens irrelevantes que dificultan la detección de la entidad.
+• El uso de números y letras mixtos en el token IDPP00C638 puede ser confuso si no se considera su contexto en la URL.
 
 ---
 
@@ -347,20 +339,20 @@ Ambigüedades:
 
 Señales observables:
 
-* bienvenido-a-correoses (subdominio)
-* .ingress-erytho.ewp (subdominio)
+* bienvenido-a-correoses-c251aa (subdominio)
+* ingress-erytho (subdominio)
 * wp-includes (ruta)
 * certificates (ruta)
-* Recibir_paquete.php (nombre de archivo)
+* Recibir_paquete (ruta)
 
 Patrón potencial:
-El patrón podría indicar la presencia de una entidad relacionada con certificados y recepción de paquetes, probablemente dentro de un contexto web de WordPress.
+El patrón que se repite es la presencia de subdominios y rutas relacionadas con WordPress y certificados.
 
 Ambigüedades:
 
-• La estructura del subdominio "bienvenido-a-correoses" puede ser confusa si no se tiene en cuenta el dominio principal.
-• La ruta "wp-includes" puede contener archivos y directorios irrelevantes para la detección de entidad.
-• El nombre de archivo "Recibir_paquete.php" podría ser un artefacto de desarrollo o un archivo específico sin relación directa con la entidad.
+• La estructura del dominio puede ser confusa debido a la presencia de números alfanuméricos en el subdominio.
+• La ruta "wp-includes" puede estar relacionada con archivos internos de WordPress, lo que puede dificultar la detección.
+• La ruta "certificates" puede contener información relevante sobre certificados digitales, pero no está claro qué entidad se está refiriendo.
 
 ---
 
@@ -372,23 +364,18 @@ Ambigüedades:
 
 Señales observables:
 
-* https://appsantandrsms-b9501c.ingress-daribow.ewp.live/
-	+ appsantandrsms
-	+ ingress-daribow
-	+ ewp
-* /wp-admin/user/
-	+ wp
-	+ admin
-	+ user
-* ?%22santander%22
+* appsantandrsms-b9501c (subdominio)
+* santander (token en la ruta)
+* santander (parametro en la query string)
 
 Patrón potencial:
-La presencia de "santander" en la ruta y en el parámetro URL sugiere una relación entre la entidad detectada y la página web administrativa de Santander.
+El patrón que se repite es la presencia de "santander" como token relevante en diferentes partes de la URL, lo que sugiere una conexión fuerte con esta entidad.
 
 Ambigüedades:
 
-• La ruta /wp-admin/user/ puede contener información adicional que no está relacionada con la entidad detectada.
-• El uso de parámetros URL como %22santander%22 puede ser utilizado para evitar la detección o distorsionar el resultado.
+• La presencia de otros tokens en la ruta y query string puede hacer que el patrón sea más difícil de detectar.
+• La posibilidad de subdominios y prefijos en la ruta puede aumentar la complejidad de la detección.
+• La ambigüedad entre "santander" como token relevante y simplemente un valor en una query string o parámetro.
 
 ---
 
@@ -400,19 +387,19 @@ Ambigüedades:
 
 Señales observables:
 
-1. El dominio `santanderbanco.es` coincide exactamente con la entidad detectada (`santander`).
-2. La ruta `/bancosantander/es/particulares/Santander/` contiene el token relevante asociado a la entidad (`Santander`).
-3. El subdominio `www.santanderbanco.es` es un indicador adicional de la presencia de la entidad.
+* La URL contiene el dominio "santanderbanco.es", que coincide con la entidad detectada ("Santander").
+* El subdominio "www" es comúnmente utilizado por entidades bancarias.
+* La ruta "/particulares/Santander/..." sugiere un contenido relacionado con cuentas de particulares del Santander.
+* La extensión ".php" indica que se trata de un archivo script, lo que no aporta información específica sobre la entidad.
 
 Patrón potencial:
 
-La presencia del dominio y ruta que contienen tokens relevantes sobre la entidad sugiere una posible relación entre la URL y la entidad `santander`. El patrón podría ser "dominios y rutas que contienen información relevante sobre la entidad".
+La presencia del dominio "santanderbanco.es" y el subdominio "www" sugiere una posible relación con la entidad Santander. La ruta "/particulares/Santander/..." confirma esta hipótesis, indicando un contenido relacionado con cuentas de particulares del Santander.
 
 Ambigüedades:
 
-• La palabra "banco" en el dominio puede hacer pensar en entidades bancarias similares, lo que podría generar confusión.
-• La ruta puede contener otros tokens irrelevantes que no estén relacionados con la entidad `santander`.
-• La presencia de múltiples subdominios (`wcomhost.com`) puede hacer difícil discernir si el dominio principal es relevante para la detección.
+* La extensión ".php" no proporciona información específica sobre la entidad.
+* La ruta puede contener otros tokens que no estén directamente relacionados con la entidad, lo que podría llevar a confusiones.
 
 ---
 
@@ -424,16 +411,17 @@ Ambigüedades:
 
 Señales observables:
 
-* ing es-misaccesos (subdominio)
-* loginon (ruta con token relevante)
+* "es-misaccesos" en el dominio
+* "/loginon" en la ruta
+* ".info" en la extensión del dominio
 
 Patrón potencial:
-La presencia de un subdominio y una ruta que contiene un token relacionado con la autenticación pueden indicar el patrón de una entidad asociada a la autenticación.
+La presencia de un subdominio específico ("es-misaccesos") y una ruta relacionada con la autenticación ("loginon") pueden indicar que la URL está relacionada con un sistema de acceso controlado.
 
 Ambigüedades:
 
-• La palabra "login" en la ruta puede ser confundida con otros contextos de autenticación.
-• El uso de los caracteres "-on" en el subdominio y la ruta puede ser interpretado como un indicador de una plataforma o aplicación específica.
+• La ruta puede contener otros tokens relevantes asociados a entidades, lo que podría confundir la detección.
+• El uso de palabras clave en el dominio (como "misaccesos") puede ser común en URLs de diferentes contextos, lo que limita la capacidad de inferir la entidad con precisión.
 
 ---
 
@@ -445,20 +433,19 @@ Ambigüedades:
 
 Señales observables:
 
-* https://000o8dc.wcomhost.com/www.santanderbanco.es/
-	+ Señal de dominio "santander"
-	+ Subdominio "www" y "wcomhost"
-* bancosantander/es/particulares/Santander/14a6aa73533e725206d52204cb133ae4
-	+ Señal de ruta que contiene el token relevante "Santander"
+* La URL contiene el dominio "santanderbanco.es"
+* La ruta comienza con "/bancosantander/es/particulares/Santander"
+* El token "Santander" se repite en la ruta y en el dominio
+* La ruta termina con "/firma_electronica.php"
 
 Patrón potencial:
-
-La presencia del dominio "santander" y la ruta que contiene el token relevante "Santander" sugiere un patrón de entidad relacionado con el banco Santander.
+El patrón que se observa es la repetición del nombre de la entidad ("Santander") en diferentes partes de la URL, lo que sugiere una conexión fuerte entre el dominio y la ruta.
 
 Ambigüedades:
 
-• El subdominio "www" y "wcomhost" pueden ser irrelevantes para la detección de entidad.
-• La ruta puede contener tokens adicionales que no estén directamente relacionados con la entidad.
+* La presencia de otros tokens que contienen "Santander" fuera del dominio y la ruta puede confundir la detección.
+* La estructura jerárquica de la ruta puede llevar a inferencias sobre la entidad, lo que puede afectar la precisión de la detección.
+* La falta de información adicional en la URL puede limitar la capacidad para detectar entidades más específicas.
 
 ---
 
@@ -470,19 +457,20 @@ Ambigüedades:
 
 Señales observables:
 
-* "wp-admin" en la ruta
-* ".dnz" en el dominio
-* "mybluehost" en el dominio
-* "/servicios.paquete" en la ruta
-* "/pagomente/Recibir_paquete.php" en la ruta
+* "wp-admin"
+* "/correos.es"
+* "servicios.paquete"
+* "pagomente"
+* "/Recibir_paquete"
 
 Patrón potencial:
-El patrón que se observa es la presencia de palabras clave relacionadas con la gestión de paquetes y correos, lo que sugiere una posible entidad relacionada con el envío y recepción de paquetes.
+El patrón que se repite es la presencia de un subdominio y una ruta que contienen información sobre servicios y paquetes relacionados con correos.
 
 Ambigüedades:
 
-• La inclusión de "wp-admin" en la ruta puede hacer referencia a un sistema de gestión de contenidos (CMS) como WordPress.
-• La presencia de ".dnz" en el dominio puede ser un subdominio o una marca registrada no relacionada con la entidad en cuestión.
+• El uso de palabras clave como "correos" y "paquete" puede sugerir una conexión con el servicio postal, lo que podría llevar a considerar la entidad como un proveedor de servicios postales.
+• La ruta "/Recibir_paquete" sugiere que se está relacionado con la recepción o procesamiento de paquetes, lo que podría influir en la detección de la entidad.
+• El uso de palabras clave en inglés ("wp-admin") puede indicar un contexto tecnológico o administrativo, lo que podría afectar la interpretación de la ruta y el subdominio.
 
 ---
 
@@ -494,16 +482,17 @@ Ambigüedades:
 
 Señales observables:
 
-* dominio "es-accesospanel"
-* ruta "/loginon.php"
+* info (en la parte del dominio)
+* loginon (en la ruta)
+* php (extensión de archivo en la ruta)
 
 Patrón potencial:
-La presencia del subdominio "es-accesospanel" y la ruta "/loginon.php" sugiere que la entidad detectada podría estar relacionada con un panel de control o una área de acceso reservada.
+La presencia de "info" y "loginon" en la URL sugiere un patrón de detección relacionado con una entidad que se refiere a información o acceso controlado.
 
 Ambigüedades:
 
-* El término "loginon" en la ruta puede ser ambiguo, ya que puede referirse a una función de autenticación o algo más.
-* La falta de información adicional sobre el dominio "es-accesospanel" hace que sea difícil determinar con precisión la naturaleza de la entidad detectada.
+* La presencia de "panel" en el dominio podría ser confusa, ya que no está directamente relacionada con la ruta.
+* La extensión "php" en la ruta puede indicar un lenguaje de programación, lo que no es específico a una entidad determinada.
 
 ---
 
@@ -515,18 +504,139 @@ Ambigüedades:
 
 Señales observables:
 
-* dhl (coincidencia exacta con el dominio)
-* express (token relevante en la ruta)
-* hfm-xgbkm-qbwx-ef-ar-qq-yng (subdominio y ruta que contienen tokens desconocidos pero potencialmente relevantes)
+* dhl (token conocido)
+* express (token conocido)
+* pages (token relevante)
 
 Patrón potencial:
-
-La presencia de "dhl" como dominio, junto con el token "express" en la ruta, sugiere un patrón relacionado con una entidad logística o de transporte.
+La presencia de "dhl" y "express" sugiere la posible detección de una entidad relacionada con el servicio logístico DHL. La ruta "/pages" puede indicar que se trata de un sitio web o plataforma digital.
 
 Ambigüedades:
 
-* La ruta puede contener tokens irrelevantes que no aportan información adicional sobre la entidad.
-* La estructura del subdominio y la ruta puede ser confusa y hacer difícil determinar el significado exacto de los tokens presentes.
+• La URL puede contener otros tokens relevantes en la ruta que no hayan sido considerados.
+• La presencia de "dhl-express" en el dominio podría ser simplemente una combinación de palabras y no necesariamente relacionada con la entidad DHL.
+• La ruta "/pages" puede pertenecer a un sitio web o plataforma general, sin relación específica con DHL.
+
+---
+
+## URL: https://banco.online.bbva.146-70-81-49.cprapid.com/BBVA-Movil/es/index.php
+
+**detected_entity:** (vacío)
+
+### Output del modelo:
+
+Señales observables:
+
+* banco
+* bbva
+* online
+* com
+
+Patrón potencial:
+El patrón que se repite es el uso de tokens relacionados con una entidad bancaria, como "banco" y "bbva", lo que podría indicar la detección de una entidad financiera.
+
+Ambigüedades:
+
+• El uso de dominio ".com" no es exclusivo para entidades financieras.
+• La presencia de subdominios puede dificultar la detección si no se coincide con un token específico.
+• La ruta "/BBVA-Movil/es/index.php" puede contener tokens irrelevantes para la detección.
+
+---
+
+## URL: https://bbva.es.id8261.info/usuario
+
+**detected_entity:** bbva
+
+### Output del modelo:
+
+Señales observables:
+
+* Se observa el dominio "bbva" con coincidencia exacta.
+* Se detecta el subdominio "es" dentro del dominio.
+* Se encuentra la ruta "/usuario".
+
+Patrón potencial:
+La presencia de un dominio específico, como "bbva", puede indicar una entidad financiera o institución. La presencia de un subdominio "es" sugiere que se trata de un sitio web dirigido a usuarios españoles.
+
+Ambigüedades:
+
+* La ruta "/usuario" podría referirse a una sección del sitio web dedicada a la gestión de usuarios, lo que no necesariamente implica que la entidad sea financiera.
+* La ausencia de otros tokens relevantes en la ruta puede limitar la detección de entidad.
+
+---
+
+## URL: https://bbva.es.personal-cuenta.info/personal/index.php?tegdfs?
+
+**detected_entity:** bbva
+
+### Output del modelo:
+
+Señales observables:
+
+* https:
+* bbva.es:
+* .personal-cuenta.
+* info/
+* personal/
+* index.php
+* ?tegdfs?
+
+Patrón potencial:
+El patrón que se repite es la presencia de subdominios y carpetas específicas que apuntan a la entidad bbva.
+
+Ambigüedades:
+
+• El carácter de interrogación (?) en el final de la URL puede indicar la presencia de parámetros, lo que podría confundir o limitar la detección.
+• La ruta index.php puede ser una página de entrada genérica y no necesariamente relacionada con bbva.
+
+---
+
+## URL: https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms1.html
+
+**detected_entity:** (vacío)
+
+### Output del modelo:
+
+Señales observables:
+
+* bancosantander (token exacto)
+* gruposantander (subdominio)
+* SMS (token relevante en la ruta)
+
+Patrón potencial:
+El patrón observable es una combinación de tokens que pueden estar relacionados con una entidad financiera, como un banco. La presencia de "bancosantander" y "gruposantander", ambos nombres asociados a una institución financiera, sugiere la posibilidad de que la URL esté relacionada con la entidad bancaria.
+
+Ambigüedades:
+
+* La ruta puede contener tokens irrelevantes no relacionados con la entidad.
+* La presencia de otros dominios o subdominios en la URL podría distraer la atención de las señales relevantes.
+
+---
+
+## URL: https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms.html
+
+**detected_entity:** (vacío)
+
+### Output del modelo:
+
+Señales observables:
+
+* bancaonline
+* bancosantander
+* Santander
+* particulares
+* gruposantander
+* SUPFPA
+* SMS
+
+Patrón potencial:
+El patrón que se repite es el uso de palabras clave relacionadas con la banca y financiamiento, como "banca", "bancos" y "Santander", lo que sugiere una posible entidad financiera.
+
+Ambigüedades:
+
+• El dominio puede contener subdominios que no sean relevantes para la detección de entidad.
+• La ruta puede contener tokens irrelevantes, como el uso de palabras comunes en el lenguaje natural.
+• La presencia de palabras clave como "particulares" y "grupos" puede ser confusa si no se considera el contexto en que se utilizan.
 
 ---
 
@@ -543,132 +653,15 @@ Señales observables:
 * online
 * cprapid
 * es
-* index.php
 
 Patrón potencial:
-La presencia de "banco" y "bbva" sugiere una posible relación con una entidad financiera, mientras que la ruta "/BBVA-Movil/" puede estar relacionada con un servicio o aplicación móvil. La combinación de estos elementos podría indicar la detección de una entidad bancaria.
+El patrón que se repite aquí es la presencia de un dominio financiero (banco) seguido de una ruta específica relacionada con el servicio de movilidad (BBVA-Movil). La repetición de "bbva" en diferentes partes de la URL sugiere una conexión estrecha entre esta entidad y el dominio.
 
 Ambigüedades:
 
-* La ruta "/146-70-81-49" puede ser un identificador único, pero no se sabe qué tipo de información puede contener.
-* La extensión ".cprapid.com" puede ser un dominio de segunda nivel que proporciona información sobre la infraestructura o el proveedor de servicios detrás la URL.
-
----
-
-## URL: https://bbva.es.id8261.info/usuario
-
-**detected_entity:** bbva
-
-### Output del modelo:
-
-Señales observables:
-
-* bbva.es (subdominio)
-* usuario (ruta)
-
-Patrón potencial:
-El patrón observable en esta URL es la presencia de un subdominio que contiene el nombre de la entidad, seguido por una ruta que describe una acción o función relacionada con esa entidad.
-
-Ambigüedades:
-
-• La ruta "usuario" puede ser confusa ya que puede referirse a cualquier tipo de usuario, no necesariamente a una entidad específica.
-• La presencia de información adicional en la ruta, como por ejemplo "/id8261", puede limitar la detección ya que puede ser considerado parte del patrón de ruta en lugar de una señal explícita de la entidad.
-
----
-
-## URL: https://bbva.es.personal-cuenta.info/personal/index.php?tegdfs?
-
-**detected_entity:** bbva
-
-### Output del modelo:
-
-Señales observables:
-
-* La URL comienza con "https://bbva", lo que sugiere la presencia del dominio de BBVA.
-* El token ".es" en el dominio puede ser una señal adicional de que se trata de la página web de BBVA en España.
-* La ruta "/personal-cuenta.info/personal/index.php" contiene el token "bbva", lo que es consistente con la detección previa.
-
-Patrón potencial:
-
-El patrón observable puede ser que la URL contenga el dominio y tokens relevantes asociados a BBVA, lo que sugiere una posible entidad relacionada con esta institución financiera.
-
-Ambigüedades:
-
-* La presencia de "?tegdfs" en la ruta puede ser un elemento que confunda o limita la detección, ya que no se sabe qué función tiene este parámetro ni si está relacionado con la entidad detectada.
-* La ruta es relativamente larga y puede contener otros tokens relevantes que no hayan sido considerados en esta análisis.
-
----
-
-## URL: https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms1.html
-
-**detected_entity:** (vacío)
-
-### Output del modelo:
-
-Señales observables:
-
-* bancosantander-es (dominio)
-* particulares.gruposantander.es (subdominio)
-* SUPFPA_ENS (ruta)
-* sms1 (ruta)
-
-Patrón potencial:
-La presencia de "bancosantander" y "gruposantander" en el dominio y subdominio, respectivamente, sugiere un patrón relacionado con una entidad financiera.
-
-Ambigüedades:
-
-• La ruta "SUPFPA_ENS" puede ser parte de un sistema internamente orientado, lo que podría reducir la confianza en la detección.
-• La extensión ".html" en la ruta puede indicar que se trata de una página web, lo que podría influir en la interpretación del patrón.
-
----
-
-## URL: https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms.html
-
-**detected_entity:** (vacío)
-
-### Output del modelo:
-
-Señales observables:
-
-* bancaonline
-* bancosantander
-* es
-* gruposantander
-* sms
-
-Patrón potencial:
-El patrón observable en esta URL podría indicar una posible conexión con una entidad financiera, específicamente con el Banco Santander. La presencia de "bancaonline" y "bancosantander" sugiere un vínculo directo con la institución financiera.
-
-Ambigüedades:
-
-* La presencia de subdominios como "particulares.gruposantander.es" puede confundir, ya que pueden indicar una sección específica dentro del sitio web.
-* La ruta "/SUPFPA_ENS/sms.html" puede contener tokens relevantes asociados a entidades financieras, pero no es claro qué entidad se está refiriendo.
-
----
-
-## URL: https://banco.online.bbva.146-70-81-49.cprapid.com/BBVA-Movil/es/index.php
-
-**detected_entity:** (vacío)
-
-### Output del modelo:
-
-Señales observables:
-
-* banco
-* bbva
-* online
-* es
-* index
-* php
-
-Patrón potencial:
-La presencia de "banco" y "bbva" en la URL puede indicar que se está relacionado con una institución financiera, posiblemente un banco.
-
-Ambigüedades:
-
-• La palabra "online" podría ser confundida con otras palabras similares (por ejemplo, "ono" o "linea").
-• La presencia de "es" como subdominio puede hacer difícil la detección de la entidad principal.
-• La ruta "/BBVA-Movil/" puede contener tokens relevantes asociados a una entidad, pero es necesario analizar más a fondo para determinar su significado.
+• La palabra "online" puede ser un término común para muchos sitios web, lo que reduce su valor como señal útil.
+• La ruta "/BBVA-Movil/es/index.php" contiene información de localización ("es") y servicio ("index.php"), lo que puede distraer la atención del patrón principal.
+• La presencia de números ("146-70-81-49") en el dominio no es claramente relacionada con la entidad, lo que hace difícil evaluar su impacto en la detección.
 
 ---
 
@@ -681,19 +674,19 @@ Ambigüedades:
 Señales observables:
 
 * bancosantander (dominio)
-* online1 (subdominio o ruta)
+* firma (subdominio)
+* online1 (ruta)
 * particulares (ruta)
-* request (ruta)
-* step (ruta)
-* one (ruta)
-* id (ruta)
+* request.php (ruta)
+* step=one (parámetro de ruta)
+* id=92481757 (parámetro de ruta)
 
 Patrón potencial:
-La detección de entidad puede indicar la presencia de una cuenta bancaria Santander, relacionada con el activación de una cuenta y envío de información de autorización.
+El patrón observado sugiere que la entidad puede estar relacionada con un servicio o plataforma de banca en línea, específicamente relacionada con la activación de cuentas.
 
 Ambigüedades:
 
-• La ruta "online1/particulares" puede estar relacionada con diferentes acciones o procesos del banco.
-• El parámetro "step=one" puede ser parte de un proceso de autorización o verificación que no está específicamente relacionado con la entidad.
-• La presencia de "id=92481757" en la ruta puede indicar una transacción o operación específica, pero no necesariamente está vinculada a la entidad.
+• La presencia de números y letras alfabéticas en el parámetro "id" podría indicar una identificación única para la entidad.
+• El uso de palabras clave como "firma" y "activation" puede sugerir procesos administrativos o legales relacionados con la entidad.
+• La ruta "request.php" sugiere que la entidad puede estar relacionada con un proceso de solicitud o envío de datos.
 

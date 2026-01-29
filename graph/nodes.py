@@ -48,9 +48,11 @@ def detector_mecanico(state):
                 }
             }
     
-    # Capa 3: Path - path contiene /{token}/
-    for token, entity_id in ENTITY_LOOKUP.items():
-        if f"/{token}/" in path:
+    # Capa 3: Segmento exacto en path
+    segments = [seg for seg in path.split("/") if seg]
+    for seg in segments:
+        if seg in ENTITY_LOOKUP:
+            entity_id = ENTITY_LOOKUP[seg]
             return {
                 "entity": {
                     "entity_detected": True,
@@ -58,6 +60,9 @@ def detector_mecanico(state):
                     "entity_name": ENTITY_NAMES.get(entity_id)
                 }
             }
+    
+
+            
     
     return {
         "entity": {
