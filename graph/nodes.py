@@ -66,5 +66,3 @@ def detector_mecanico(state):
             "entity_name": None
         }
     }
-
-

@@ -1,31 +1,38 @@
 # sector_entidad_lang
 
-Este proyecto implementa un flujo determinista basado en **LangGraph** para identificar entidades a través de sus URLs. El sistema analiza una dirección web, localiza tokens predefinidos en ella y devuelve la entidad asociada de forma estructurada y predecible.
+Este proyecto implementa un flujo determinista basado en LangGraph para la detección de entidades mediante el análisis de URLs. Su función principal es recibir una URL, buscar tokens predefinidos en su estructura y devolver la entidad correspondiente si existe una coincidencia exacta.
 
-## Propósito y Alcance
+## Descripción del Proyecto
 
-Para garantizar la precisión técnica, es fundamental definir los límites del sistema:
+El sistema está diseñado para ser predecible y eficiente, operando mediante reglas mecánicas de coincidencia de tokens en lugar de inferencia probabilística.
 
-### Qué NO hace el sistema
-*   **No es un detector de phishing:** No evalúa la seguridad de la URL.
-*   **No prioriza alertas:** No gestiona la criticidad de los eventos.
-*   **No usa IA:** No utiliza Machine Learning ni Modelos de Lenguaje (LLMs).
-*   **No clasifica:** No realiza scoring ni categorización de datos.
+### Fuera de Alcance
 
-### Exclusiones específicas de la v3
-En esta versión no se incluye lógica de sectores, sistemas de puntuación, integraciones con LLMs ni abstracciones adicionales que no formen parte de la detección mecánica principal.
+Para mantener el enfoque y la simplicidad técnica, este proyecto **no** realiza las siguientes tareas:
+- Detección de phishing o sitios maliciosos.
+- Priorización o gestión de alertas.
+- Uso de modelos de Machine Learning o Large Language Models (LLMs).
+- Clasificación de contenidos o asignación de puntajes (scoring).
 
-## Input
+### Exclusiones de la Versión 3 (v3)
 
-Diccionario con una clave `url` de tipo string.
+En la versión actual, se han excluido explícitamente las siguientes funcionalidades:
+- Gestión de sectores.
+- Sistemas de scoring.
+- Integración con LLMs.
+- Abstracciones adicionales o lógica de negocio compleja.
+
+## Especificaciones de Entrada
+
+El sistema recibe un diccionario con la clave `url` de tipo string:
 
 ```python
 {"url": "http://ejemplo.com"}
 ```
 
-## Output (Contrato v3)
+## Contrato de Salida (v3)
 
-### Caso exito (sin abort)
+### Caso de Éxito (Detección completada)
 
 ```python
 {
@@ -34,51 +41,50 @@ Diccionario con una clave `url` de tipo string.
         "entity_id": "bbva",       # o None si detected=False
         "entity_name": "BBVA"      # o None si detected=False
     },
-    "abort_reason": None
+    "abort_reason": None,
 }
 ```
 
-**Invariantes:**
-- `entity.entity_detected` siempre presente (bool)
-- Si `True` → `entity_id` y `entity_name` no-None
-- Si `False` → `entity_id` y `entity_name` None
+**Invariantes de Salida:**
+- `entity.entity_detected` siempre está presente como valor booleano.
+- Si es `True`, `entity_id` y `entity_name` deben tener valores (no-None).
+- Si es `False`, `entity_id` y `entity_name` deben ser `None`.
 
-### Caso abort
+### Caso de Aborto (Error o Validación fallida)
 
 ```python
 {
     "entity": None,
     "abort_reason": "url missing or invalid"
-}
 ```
 
-## Como funciona (v3)
+## Funcionamiento Interno (v3)
 
-El grafo ejecuta los siguientes nodos:
+El grafo de ejecución se compone de los siguientes nodos:
 
-1. **validate_input** - Valida que `url` sea string valido. Retorna `input` o `abort_reason`.
-2. **[gate]** - Si `abort_reason` → END.
-3. **detector_mecanico** - Busca tokens en la URL. Retorna `entity`.
+1. **validate_input**: Valida que la URL sea un string válido. Retorna el input procesado o un motivo de aborto (`abort_reason`).
+2. **[gate]**: Nodo de control. Si existe un `abort_reason`, el flujo finaliza inmediatamente.
+3. **detector_mecanico**: Realiza la búsqueda de tokens en la URL. Retorna la entidad detectada (`entity`).
 
-## Invariantes del sistema
+## Invariantes del Sistema
 
-- **Nodos puros**: no mutan estado, retornan deltas.
-- **Gates**: solo leen flags, no computan.
-- **Determinismo**: mismo input → mismo output (sin timestamps/UUIDs en contrato).
-- **Defensividad**: accesos con `.get()`, cero excepciones por datos.
+- **Nodos Puros**: Los nodos no modifican el estado global; retornan deltas que se integran al flujo.
+- **Gates (Compuertas)**: Solo evalúan banderas existentes, no realizan cálculos adicionales.
+- **Determinismo**: El mismo input garantiza siempre el mismo output. No se incluyen elementos variables como marcas de tiempo o UUIDs en el contrato.
+- **Programación Defensiva**: Se prioriza el uso de `.get()` para accesos seguros a datos, evitando excepciones en tiempo de ejecución.
 
-## Guía de Inicio Rápido
+## Instalación y Ejecución
 
-### Instalación y Ejecución
-Para configurar el entorno y ejecutar el flujo principal:
+Para poner en marcha el proyecto, ejecute los siguientes comandos:
 
 ```bash
 pip install -r requirements.txt
-python main.py
+python -m main.py
 ```
 
-### Verificación del Contrato
-Para asegurar que el sistema respeta los invariantes y el esquema de salida definido:
+## Pruebas
+
+Para validar el contrato y la lógica del sistema:
 
 ```bash
 pytest test_contract.py -v

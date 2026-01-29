@@ -1,6 +1,30 @@
 url,detected_entity,expected_entity,notes
-url,,expected_entity,notes
-http://particulares-bancosantander-es.tempurl.host/es/grupo/home/codigo_incorrecta.php,santander,santander,priorizada por scoring; ambigüedad esperable
-http://loc52.caixabank.es.lacaixa.actualizar.information.ay-min.az/soporte-directonow/home/Espera.html,caixabank,caixabank,brand en subdominio; colisiones posibles
-http://oficinacorreos.page.link/es,correos,correos,shortener; hosting externo
+http://particulares-bancosantander-es.tempurl.host/es/grupo/home/codigo_incorrecta.php,,santander,priorizada por scoring; ambigüedad esperable
+http://loc52.caixabank.es.lacaixa.actualizar.information.ay-min.az/soporte-directonow/home/Espera.html,,caixabank,brand en subdominio; colisiones posibles
+http://oficinacorreos.page.link/es,,correos,shortener; hosting externo
 https://bbva.es.suspension-tarjeta.com,bbva,bbva,brand en dominio; patrón común
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/14a6aa73533e725206d52204cb133ae4/sms_codigo.php,santander,santander,brand_in_domain
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/fc1d08f1e92f5327005249a01496da74/sms_codigo.php,santander,santander,brand_in_domain
+https://2022-bdaef4.ingress-earth.ewp.live/correos/Recibir_paquete.php,correos,correos,brand_in_path
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/14a6aa73533e725206d52204cb133ae4/codigo_incorrecta.php,santander,santander,brand_in_domain
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/fc1d08f1e92f5327005249a01496da74/codigo_incorrecta.php,santander,santander,brand_in_domain
+https://21321-bbf062.ingress-earth.ewp.live/pagomente/Recibir_paquete.php,,correos,no_brand_signal
+http://particulares-santanderes.10web.site/wp-includes/XZlL3dlYi93cC1sa/orange/customer_center/customer-IDPP00C168/login.php,,santander,brand_in_subdomain
+https://3476-1-bce161.ingress-baronn.ewp.live/pagomente/Recibir_paquete.php,,correos,no_brand_signal
+http://particulares-bancosantander-es.tempurl.host/es/grupo/home/codigo_incorrecta.php,,santander,brand_in_subdomain
+http://particulares-santanderes.10web.site/wp-includes/XZlL3dlYi93cC1sa/orange/customer_center/customer-IDPP00C638/login.php,,santander,brand_in_subdomain
+https://bienvenido-a-correoses-c251aa.ingress-erytho.ewp.live/wp-includes/certificates/cs/Recibir_paquete.php,,correos,brand_in_subdomain
+https://appsantandrsms-b9501c.ingress-daribow.ewp.live/wp-admin/user/SANTANDER/es/clients/login.php?%22santander%22,santander,santander,brand_token_repeated
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/14a6aa73533e725206d52204cb133ae4/Mi_cuenta.php,santander,santander,brand_in_domain
+http://ing.es-misaccesos.info/loginon.php,,ing,brand_in_subdomain
+https://000o8dc.wcomhost.com/www.santanderbanco.es/bancosantander/es/particulares/Santander/14a6aa73533e725206d52204cb133ae4/firma_electronica.php,santander,santander,brand_in_domain 
+http://kbv.dnz.mybluehost.me/wp-admin/correos.es/servicios.paquete/pagomente/Recibir_paquete.php,,correos,brand_in_path
+http://ing.es-accesospanel.info/loginon.php,,ing,brand_in_subdomain
+https://dhl-express-hfmxgobkwmqdbxefarqqying.pages.dev,,dhl,brand_in_subdomain
+https://banco.online.bbva.146-70-81-49.cprapid.com/BBVA-Movil/es/index.php,,bbva,brand_token_repeated
+https://bbva.es.id8261.info/usuario,bbva,bbva,brand_in_subdomain
+https://bbva.es.personal-cuenta.info/personal/index.php?tegdfs?,bbva,bbva,brand_in_subdomain
+https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms1.html,,santander,brand_token_repeated
+https://bancaonline-bancosantander-es.com/particulares.gruposantander.es/SUPFPA_ENS/sms.html,,santander,brand_token_repeated
+https://banco.online.bbva.146-70-81-49.cprapid.com/BBVA-Movil/es/index.php,,bbva,brand_token_repeated
+https://bancosantander-firma-es-account-activation-yakuzablyat101350359.codeanyapp.com/online1/particulares/request.php?step=one&id=92481757,,santander,brand_in_subdomain
