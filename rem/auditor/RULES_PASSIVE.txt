@@ -1,0 +1,6 @@
+- La URL se analiza por su estructura, separando dominio y ruta.
+- La detección se basa en coincidencias literales con una lista cerrada de tokens conocidos.
+- Existen varias capas de observación sobre la URL, evaluadas de forma secuencial.
+- El dominio puede aportar señales tanto por coincidencia exacta como por subdominio.
+- La ruta puede contener tokens relevantes asociados a una entidad.
+- Solo se consideran señales explícitas presentes en la URL, sin inferencias externas.
