@@ -50,15 +50,17 @@ INPUT:
 - url: {url}
 - detected_entity: {detected_entity}
 """
-            
+            print(f"Auditing: {url}", flush=True)
+
             result = subprocess.run(
-                ["ollama", "run", "phi-3:mini"],
+                ["ollama", "run", "gemma3:4b"],
                 input=full_prompt,
                 capture_output=True,
                 text=True
             )
             
-            model_output = result.stdout.strip()
+            model_output = result.stdout.strip() or result.stderr.strip()
+
             
             out.write("---\n\n")
             out.write(f"## URL: {url}\n\n")

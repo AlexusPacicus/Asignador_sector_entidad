@@ -17,3 +17,8 @@ Restricciones:
 - No propongas reglas, pesos ni prioridades.
 - No menciones entidades esperadas ni contexto externo.
 - No justifiques el sistema ni sugieras mejoras.
+
+Si no hay coincidencias literales exactas permitidas por las reglas,
+describe únicamente:
+- qué partes visibles tiene la URL (dominio, número de segmentos de ruta),
+- y declara explícitamente: "no se observa ninguna señal válida según las reglas".
