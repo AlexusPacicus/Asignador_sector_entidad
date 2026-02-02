@@ -1,4 +1,5 @@
 # sector_entidad_lang
+# La lista de entidades está congelada
 
 Este proyecto implementa un flujo determinista basado en LangGraph para la detección de entidades mediante el análisis de URLs. Su función principal es recibir una URL, buscar tokens predefinidos en su estructura y devolver la entidad correspondiente si existe una coincidencia exacta.
 

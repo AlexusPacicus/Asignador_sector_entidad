@@ -5,8 +5,8 @@ from pathlib import Path
 ENTITY_LOOKUP = {}
 ENTITY_NAMES = {}
 
-csv_path = Path(__file__).resolve().parent.parent / "data" / "entities.csv"
-
+csv_path = Path(__file__).resolve().parent.parent / "data" / "contracts" "entities.csv"
+print("LOADING ENTITIES FROM:", csv_path)
 with open(csv_path, newline="", encoding="utf-8") as f:
     reader = csv.DictReader(f)
     for row in reader:
@@ -16,3 +16,5 @@ with open(csv_path, newline="", encoding="utf-8") as f:
 
         ENTITY_LOOKUP[token] = entity_id
         ENTITY_NAMES[entity_id] = name
+
+

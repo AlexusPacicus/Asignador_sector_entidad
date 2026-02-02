@@ -1,5 +1,5 @@
 entity_id,entity_name,token,notes,source
-bbva,BBVA,bbva,,manual  
+bbva,BBVA,bbva,,manual
 santander,Santander,santander,,manual
 caixabank,CaixaBank,caixa,,manual
 sabadell,Sabadell,sabadell,,manual

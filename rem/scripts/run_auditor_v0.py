@@ -10,7 +10,7 @@ from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
-CASES_CSV = BASE_DIR / "cases" / "cases_post_R1_2026-01-29.csv"
+CASES_CSV = BASE_DIR / "cases" / "cases_eval_v0.csv"
 
 RULES_FILE = BASE_DIR / "auditor" / "RULES_PASSIVE.txt"
 PROMPT_FILE = BASE_DIR / "auditor" / "PROMPT_v0.txt"

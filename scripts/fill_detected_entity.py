@@ -1,10 +1,10 @@
-"""Rellena detected_entity en rem/cases.csv ejecutando el grafo."""
+"""Rellena detected_entity ejecutando el grafo."""
 import csv
 from pathlib import Path
 
 from graph.graph import app
 
-CSV_PATH = Path(__file__).parent.parent / "cases.csv"
+CSV_PATH = Path(__file__).parent.parent / "data/prueba_asignador_only_url.csv"
 
 
 def main():
