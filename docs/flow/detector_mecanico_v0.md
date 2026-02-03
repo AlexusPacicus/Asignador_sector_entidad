@@ -1,5 +1,9 @@
 # Detector Mecánico v0 — Implementación Actual
 
+Estado: FROZEN (v0)
+Alcance: identificación nominal de entidad en URL (metadata). No implica legitimidad.
+Cambios prohibidos: cualquier ajuste de reglas requiere nueva versión (v1).
+
 > Documentación de la lógica implementada en `graph/nodes.py`
 
 ## Resumen
@@ -14,11 +18,11 @@ El detector mecánico actual evalúa URLs en **3 capas secuenciales**. Retorna l
 flowchart TD
     URL[URL entrada] --> Parse[urlparse + lowercase]
     Parse --> C1{Capa 1: Dominio exacto}
-    C1 -->|"netloc termina en token.es o token.com"| Detect1[DECIDE: entity_id]
+    C1 -->|"netloc termina en token.es o token.com"| Detect1[SET: entity_id]
     C1 -->|No| C2{Capa 2: Subdominio}
-    C2 -->|"netloc empieza por token."| Detect2[DECIDE: entity_id]
+    C2 -->|"netloc empieza por token."| Detect2[SET: entity_id]
     C2 -->|No| C3{Capa 3: Segmento en path}
-    C3 -->|"segmento == token"| Detect3[DECIDE: entity_id]
+    C3 -->|"segmento == token"| Detect3[SET: entity_id]
     C3 -->|No| NoEntity[NO_ENTITY]
 ```
 
@@ -126,3 +130,22 @@ seg in ENTITY_LOOKUP  # match exacto
 Archivo: [`graph/nodes.py`](../../graph/nodes.py)
 
 Función: `detector_mecanico(state)`
+
+## 🔒 Decisiones explícitas — Detector Mecánico v0 (FROZEN)
+
+- El detector identifica **referencias nominales de entidad en URLs**.
+- **No valida legitimidad, ownership, reputación ni autenticidad** del dominio.
+- Puede devolver una entidad en **dominios fraudulentos** de forma intencional.
+- La detección se realiza en **capas secuenciales con prioridad fija**:
+  1. Dominio exacto
+  2. Subdominio
+  3. Segmento exacto en path
+- **No se evalúan colisiones entre capas**.
+- En caso de múltiples posibles entidades, **no se detecta ambigüedad**.
+- **La primera coincidencia encontrada finaliza la evaluación**.
+- **No existe ABORT por ambigüedad** en v0.
+- No hay scoring, ranking, inferencia ni normalización semántica.
+- La salida del detector es **metadata**, no un veredicto ni decisión de seguridad.
+
+Estado: **FROZEN (v0)**  
+Cualquier cambio requiere una nueva versión (v1).
