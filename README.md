@@ -3,6 +3,10 @@
 
 Este proyecto implementa un flujo determinista basado en LangGraph para la detección de entidades mediante el análisis de URLs. Su función principal es recibir una URL, buscar tokens predefinidos en su estructura y devolver la entidad correspondiente si existe una coincidencia exacta.
 
+Nota crítica:
+El sistema identifica referencias nominales de entidad en URLs como metadata.
+La detección de una entidad NO implica legitimidad, ownership ni autenticidad del dominio.
+
 ## Descripción del Proyecto
 
 El sistema está diseñado para ser predecible y eficiente, operando mediante reglas mecánicas de coincidencia de tokens en lugar de inferencia probabilística.
@@ -91,3 +95,6 @@ Para validar el contrato y la lógica del sistema:
 pytest test_contract.py -v
 ```
 
+Estado del detector mecánico:
+v0 — FROZEN.
+El comportamiento descrito es estable y no se modifica sin nueva versión (v1).

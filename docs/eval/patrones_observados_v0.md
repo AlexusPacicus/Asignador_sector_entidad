@@ -4,6 +4,18 @@
 
 ---
 
+⚠️ Documento descriptivo (NO NORMATIVO)
+
+Este documento recoge observaciones empíricas sobre URLs procesadas por el detector mecánico v0.
+- NO define reglas.
+- NO justifica cambios en el detector.
+- NO altera el comportamiento del sistema.
+- NO es input para decisiones automáticas.
+
+Cualquier uso operativo de estos patrones requiere una nueva versión contractual (v1).
+
+---
+
 ## Limitaciones conocidas
 
 | Limitación | Descripción |

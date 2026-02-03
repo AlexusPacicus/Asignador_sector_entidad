@@ -6,6 +6,13 @@
 
 El detector mecánico evalúa URLs en **3 capas secuenciales**. Retorna la primera entidad que coincida; si ninguna capa encuentra match, retorna `entity_detected: false`.
 
+
+---
+
+Rol:
+Este flujo únicamente enriquece metadata.
+No valida legitimidad, no clasifica, no decide ni prioriza.
+
 ---
 
 ## Flujo de detección
@@ -14,11 +21,11 @@ El detector mecánico evalúa URLs en **3 capas secuenciales**. Retorna la prime
 flowchart TD
     URL[URL entrada] --> Parse[urlparse + lowercase]
     Parse --> C1{Capa 1: Dominio exacto}
-    C1 -->|"netloc termina en token.es o token.com"| Detect1[DECIDE: entity_id]
+    C1 -->|"netloc termina en token.es o token.com"| Detect1[SET: entity_id]
     C1 -->|No| C2{Capa 2: Subdominio}
-    C2 -->|"netloc empieza por token."| Detect2[DECIDE: entity_id]
+    C2 -->|"netloc empieza por token."| Detect2[SET: entity_id]
     C2 -->|No| C3{Capa 3: Segmento en path}
-    C3 -->|"segmento == token"| Detect3[DECIDE: entity_id]
+    C3 -->|"segmento == token"| Detect3[SET: entity_id]
     C3 -->|No| NoEntity[NO_ENTITY]
 ```
 
@@ -102,3 +109,7 @@ seg in ENTITY_LOOKUP  # match exacto
 Archivo: [`graph/nodes.py`](../../graph/nodes.py)
 
 Función: `detector_mecanico(state)`
+
+Estado: FROZEN (v0)
+Este documento describe el comportamiento actual.
+Cualquier cambio requiere nueva versión (v1).
