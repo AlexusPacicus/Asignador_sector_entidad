@@ -5,17 +5,18 @@ Auditor offline v0 - ejecuta análisis de URLs con Ollama.
 
 import csv
 import subprocess
+import sys
 from datetime import date
 from pathlib import Path
 
 BASE_DIR = Path(__file__).parent.parent
 
-CASES_CSV = BASE_DIR / "cases" / "cases_eval_v0.csv"
+CASES_CSV = Path(sys.argv[1]) if len(sys.argv) > 1 else BASE_DIR / "auditor_vo" / "cases" / "cases_eval_v0.csv"
 
-RULES_FILE = BASE_DIR / "auditor" / "RULES_PASSIVE.txt"
-PROMPT_FILE = BASE_DIR / "auditor" / "PROMPT_v0.txt"
+RULES_FILE = BASE_DIR / "auditor_vo" / "RULES_PASSIVE.txt"
+PROMPT_FILE = BASE_DIR / "auditor_vo" / "PROMPT_v0.txt"
 
-OUTPUT_DIR = BASE_DIR / "auditor" / "outputs"
+OUTPUT_DIR = BASE_DIR / "auditor_vo" / "outputs"
 
 rules_text = RULES_FILE.read_text(encoding="utf-8")
 prompt_template = PROMPT_FILE.read_text(encoding="utf-8")

@@ -1,0 +1,26 @@
+url,detected_entity,expected_entity,reviewed
+http://044088d.wcomhost.com/www.santanader.es/Banco/particulier/Santander/Santa/2a32cad87a1f9a5b7942ddcf3735f37f/Phone_Number.php,santander,santander,true
+http://0c4d4e6.wcomhost.com/Banco-Santander/particulares/Iogin/home/sms_codigo.php,,santander,true
+http://agancicaix034-b726fc.ingress-baronn.ewp.live/wp-admin/acceso/es/clients/login.php,,caixabank,true
+http://alertanotificacionesdinamicos.com/Verificacion/Estado/Ingreso/Proceso/Estimado/sucarsal/index.php,,,true
+http://app.dhl.international.express.au.gorengo.com/on/my-shopping-cart.php,,dhl,true    
+http://ayusjcaexascuentolasalaos-b632a8.ingress-daribow.ewp.live/audirs/home/sms.html,,,true
+http://bancaonline.bankinter.com.login.cuenta.mazayame.com/?pwd=bankinter,,bankinter,true
+http://bancosantander.es.hotelparadis.es/aviso/60d6672570af1c8/login.php,,santander,true
+http://bbvaspaing.temp.swtest.ru/bbva21/bbva/area_cliente/SMSconfirmacion.html,bbva,bbva,true
+http://caixabank.es.sabadent.ir/particular/holabank/online-banking/login.php?cmd=login_submit&id=50e1dfe46956cea691d7a1586bbfff5d50e1dfe46956cea691d7a1586bbfff5d&session=50e1dfe46956cea691d7a1586bbfff5d,,caixabank,true
+http://caixa-confirmacion-974baa.ingress-florina.easywp.com/mi-cuenta/acceso/es/clients/login.php?verification,,caixabank,true
+http://casosapple.com-verificacionapple.com/index.php/false/false/py1n.html/discovercard.com/dfs/accounthome/summary/-www.schwab.com/secure.accurint.com/unfcu2.org/login1/wachovia.com/myaccounts.aspx/investing.schwab.com,,apple,true
+http://correos-1-bc9a64.ingress-erytho.ewp.live/info/pagomente,,correos,true
+http://correos-cliente-spain.koncil.com/pago/manage/sms/sms2.html,,correos,true
+http://correos.es-es-es-herramientas-localizador-envios.u962745a2w.ha005.t.justns.ru/71da2eb1bb4778f/sms/index.html,correos,correos,true
+http://correosexpress.elementor.cloud/wp-content/plugins/pagomente/Recibir_paquete.php,,correos,true
+http://correosseuraviso.page.link/infos,,correos,true
+http://correos-spain.tempurl.host/es/Recibir_paquete.php,,correos, true
+http://correos-tracking.tempurl.host/es/Recibir_paquete.php,,correos,true
+http://cuenta-confirmacion-974baa.ingress-bonde.easywp.com/mi-cuenta/acceso/es/clients/login.php?verification=,,correos,true
+http://cuentas.15-237-142-160.cprapid.com/bbva2/?id_jibbrs=dr-417538,,bbva,true
+http://hiringindia.com/pr/Actualizar-informacion/accesso/2b960/acceso-clientes/sms.php?Pm2d-zKiF7DBev16fBE56fX2S6FAjdaZ2x1g:6LyMTcn7-IoeX0T2780907PBq3Mp6kqmrcVd57AdQZrNZlQ7tQguX56n8SN,,,true
+http://ing.es-operacionesweb.info/loginon.php,,ing,true
+http://loc10cxixaayuodaaccesoae-b40361.ingress-florina.ewp.live/loca4/home/sms2.html,,caixabank,true
+http://loc2.caixabank.es.ay-min.az/GPeticionesWebLogicSession/LaCaixa/home/Codigo.html,,caixabank,true
